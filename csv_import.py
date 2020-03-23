@@ -12,7 +12,3 @@ with open('BDSOpportunityAssignment.csv', 'r') as csv_file:
 
 	# 	for line in csv_reader:
 	# 		csv_writer.writerow(line)
-	asdfasdf
-	async def fc
-	(parameter_list):
-		pass
