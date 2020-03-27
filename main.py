@@ -1,6 +1,7 @@
-import csv
 
-def clean_csv():
+def clean_OppsList():
+	import csv
+
 	orig_csv_file = 'BDSOpportunityAssignment.csv'
 	new_csv_file = 'editedOppsList.csv'
 
@@ -56,4 +57,7 @@ def clean_csv():
 				del line['AWARD INFORMATION']
 				csv_writer.writerow(line)
 
-clean_csv()
+def import_OppsList():
+	
+
+import_OppsList()
