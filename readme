@@ -1,2 +1,4 @@
-Create Dictionary from all ACT! contacts
-Create Dictionary of Opps
+Cleans CSV file
+Imports CSV as list of opps
+_____________________________________________________________
+Import act contacts as dictionary

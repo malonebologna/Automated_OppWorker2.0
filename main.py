@@ -1,16 +1,18 @@
-
-orig_csv_file = 'BDSOpportunityAssignment.csv'
-clean_csv_file = 'cleanOppsList.csv'
+# Variables
+orig_opps_file = 'BDSOpportunityAssignment.csv'
+clean_opps_file = 'cleanOppsList.csv'
+orig_act_file = 'ACT_Contacts.csv'
+clean_act_file ='cleanActContacts.csv'
 
 #-----------------------------------------------------------
 
-def clean_OppsList():
+def clean_OppsData():
 	import csv
 
-	with open(orig_csv_file, 'r') as csv_file:
+	with open(orig_opps_file, 'r') as csv_file:
 		csv_reader = csv.DictReader(csv_file)
 
-		with open(clean_csv_file, 'w') as new_file:
+		with open(clean_opps_file, 'w') as new_file:
 			fieldnames=['Entry #',
 						'BDS',
 						'BDS Email Address',
@@ -62,7 +64,7 @@ def clean_OppsList():
 def import_OppsList():
 	import csv
 
-	csv_file = open(clean_csv_file, 'r')
+	csv_file = open(clean_opps_file, 'r')
 	csv_reader = csv.reader(csv_file)
 	opps_List = []
 
@@ -86,8 +88,27 @@ def import_OppsList():
 
 #-----------------------------------------------------------
 
-clean_OppsList()
+def clean_ActData():
+	import pandas as pd
+	contacts = pd.read_csv(orig_act_file)
+	contacts=contacts.dropna(subset=['E-mail'])
+	contacts.to_csv(clean_act_file,index=False)
 
-for i in import_OppsList():
-		print(i)
-		print('\n')
+
+#-----------------------------------------------------------
+
+def import_ActDict():
+	pass
+
+#-----------------------------------------------------------
+
+def main():
+	# clean_OppsData()
+
+	# for i in import_OppsList():
+	# 		print(i)
+	# 		print('\n')
+
+	clean_ActData()
+
+main()
