@@ -2,6 +2,8 @@
 orig_csv_file = 'BDSOpportunityAssignment.csv'
 clean_csv_file = 'cleanOppsList.csv'
 
+#-----------------------------------------------------------
+
 def clean_OppsList():
 	import csv
 
@@ -24,8 +26,6 @@ def clean_OppsList():
 						'Link to Opportunity on FedBizOpps, DIBBS, NECO, etc',]
 
 			csv_writer = csv.DictWriter(new_file, fieldnames=fieldnames, delimiter=',')
-
-			csv_writer.writeheader()
 
 			for line in csv_reader:
 				del line['Date Created']
@@ -57,29 +57,37 @@ def clean_OppsList():
 				del line['AWARD INFORMATION']
 				csv_writer.writerow(line)
 
-def import_OppsDict():
+#-----------------------------------------------------------				
+
+def import_OppsList():
 	import csv
 
-	with open(clean_csv_file, 'r') as csv_file:
-		csv_reader = csv.reader(csv_file)
-		opps_Dict = {'Opp':1}
-		
-		for row in csv_reader:
-			print(row[0])
-			opp={'Entry #':row[0],
-				'BDS':row[1],
-				'BDS Email Address':row[2],
-				'Opportunity Title':row[3],
-				'Solicitation Number':row[4],
-				'Agency':row[5],
-				'Response Date':row[6],
-				'Set Aside':row[7],
-				'NAICS Code Assigned':row[8],
-				'Additional BDS NAICS codes':row[9],
-				'Industry':row[10],
-				'Keyword Suggestions':row[11],
-				'Link to Opportunity on FedBizOpps, DIBBS, NECO, etc':row[12]}
-			print(opp)
+	csv_file = open(clean_csv_file, 'r')
+	csv_reader = csv.reader(csv_file)
+	opps_List = []
 
-import_OppsDict()
-#clean_OppsList()
+	for row in csv_reader:
+		opps_List.append({
+			'Entry #':row[0],
+			'BDS':row[1],
+			'BDS Email Address':row[2],
+			'Opportunity Title':row[3],
+			'Solicitation Number':row[4],
+			'Agency':row[5],
+			'Response Date':row[6],
+			'Set Aside':row[7],
+			'NAICS Code Assigned':row[8],
+			'Additional BDS NAICS codes':row[9],
+			'Industry':row[10],
+			'Keyword Suggestions':row[11],
+			'Link to Opportunity on FedBizOpps, DIBBS, NECO, etc':row[12]})
+	
+	return opps_List
+
+#-----------------------------------------------------------
+
+clean_OppsList()
+
+for i in import_OppsList():
+		print(i)
+		print('\n')
