@@ -3,7 +3,7 @@ def clean_OppsList():
 	import csv
 
 	orig_csv_file = 'BDSOpportunityAssignment.csv'
-	new_csv_file = 'editedOppsList.csv'
+	new_csv_file = 'cleanOppsList.csv'
 
 	with open(orig_csv_file, 'r') as csv_file:
 		csv_reader = csv.DictReader(csv_file)
@@ -23,7 +23,7 @@ def clean_OppsList():
 						'Keyword Suggestions',
 						'Link to Opportunity on FedBizOpps, DIBBS, NECO, etc',]
 
-			csv_writer = csv.DictWriter(new_file, fieldnames=fieldnames, delimiter='-')
+			csv_writer = csv.DictWriter(new_file, fieldnames=fieldnames, delimiter=',')
 
 			csv_writer.writeheader()
 
@@ -58,6 +58,6 @@ def clean_OppsList():
 				csv_writer.writerow(line)
 
 def import_OppsList():
-	
+	pass
 
-import_OppsList()
+clean_OppsList()
