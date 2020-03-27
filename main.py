@@ -1,14 +1,14 @@
 
+orig_csv_file = 'BDSOpportunityAssignment.csv'
+clean_csv_file = 'cleanOppsList.csv'
+
 def clean_OppsList():
 	import csv
-
-	orig_csv_file = 'BDSOpportunityAssignment.csv'
-	new_csv_file = 'cleanOppsList.csv'
 
 	with open(orig_csv_file, 'r') as csv_file:
 		csv_reader = csv.DictReader(csv_file)
 
-		with open(new_csv_file, 'w') as new_file:
+		with open(clean_csv_file, 'w') as new_file:
 			fieldnames=['Entry #',
 						'BDS',
 						'BDS Email Address',
@@ -37,7 +37,7 @@ def clean_OppsList():
 				del line['Notice Type']
 				del line['PSC / FSC Code']
 				del line['Estimated Value (Enter 25,000.00 if unknown)']
-				del line['Response Date']
+				del line['Response Date (test)']
 				del line['Synopsis - Do not list the entire opportunity.  Just the basic synopsis - keep it short.']
 				del line['Contracting Office Address']
 				del line['Place of Performance']
@@ -57,7 +57,29 @@ def clean_OppsList():
 				del line['AWARD INFORMATION']
 				csv_writer.writerow(line)
 
-def import_OppsList():
-	pass
+def import_OppsDict():
+	import csv
 
-clean_OppsList()
+	with open(clean_csv_file, 'r') as csv_file:
+		csv_reader = csv.reader(csv_file)
+		opps_Dict = {'Opp':1}
+		
+		for row in csv_reader:
+			print(row[0])
+			opp={'Entry #':row[0],
+				'BDS':row[1],
+				'BDS Email Address':row[2],
+				'Opportunity Title':row[3],
+				'Solicitation Number':row[4],
+				'Agency':row[5],
+				'Response Date':row[6],
+				'Set Aside':row[7],
+				'NAICS Code Assigned':row[8],
+				'Additional BDS NAICS codes':row[9],
+				'Industry':row[10],
+				'Keyword Suggestions':row[11],
+				'Link to Opportunity on FedBizOpps, DIBBS, NECO, etc':row[12]}
+			print(opp)
+
+import_OppsDict()
+#clean_OppsList()
